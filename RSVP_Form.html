@@ -29,28 +29,106 @@
       overflow-x: auto;
       white-space: nowrap;
     }
+    .topnav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+
     .logo {
       font-family: 'Cinzel', cursive;
       font-size: 20px;
       color: var(--cream);
-      flex-shrink: 0;
-    }
-    nav {
-      display: flex;
-      flex-shrink: 1;
-    }
-    nav a {
-      color: var(--sage);
-      margin: 0 15px;
       text-decoration: none;
-      font-weight: bold;
-      font-family: 'Cinzel', serif;
       flex-shrink: 0;
     }
-    nav a:hover {
-      color: var(--cream);
+
+    .icon {
+      display: block;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    .icon div {
+      width: 25px;
+      height: 3px;
+      background-color: var(--cream);
+      margin: 5px 0;
+    }
+
+    #myLinks {
+      display: none;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.95);
+      position: absolute;
+      right: 20px;
+      top: 60px;
+      width: auto;
+      min-width: 150px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px var(--cream);
+    }
+
+    #myLinks.show {
+      display: block;
     }
     
+    #myLinks a {
+      color: var(--cream);
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      font-family: 'Cinzel', serif;
+      display: block;
+      transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+      text-align: right;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #myLinks a:hover {
+      background-color: transparent;
+      color: var(--cream);
+      text-shadow: 0 0 60px var(--cream);
+      transform: scale(1.05);
+    }
+    
+    #myLinks a.active {
+      color: var(--cream);
+      animation: pulseGlow 5s infinite;
+      font-weight: bold;
+    }
+
+
+    @media (min-width: 769px) {
+      .icon {
+        display: none;
+      }
+
+      #myLinks {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        background: none;
+        box-shadow: none;
+      }
+
+      #myLinks a {
+        padding: 0 15px;
+      }
+    }
+    @keyframes pulseGlow {
+ 
+  50% {
+    text-shadow: 0 0 8px var(--cream), 0 0 50px var(--cream);
+  }
+}
     body {
       font-family: 'Open Sans', sans-serif;
       background: #000;
@@ -145,6 +223,7 @@
     .hidden {
       display: none;
     }
+    
     .guest-section {
       background: #1a1a1a;
       padding: 50px;
@@ -228,16 +307,24 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">June 21, 2025</div>
-    <nav>
+  <div class="topnav">
+    <a href="index.html" class="logo">June 21, 2025</a>
+    <div class="icon" onclick="myFunction()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div id="myLinks">
       <a href="index.html">Home</a>
       <a href="schedule.html">Schedule</a>
       <a href="lodging.html">Lodging</a>
       <a href="registry.html">Registry</a>
-      <a href="rsvp.html">RSVP</a>
-    </nav>
-  </header>
+      <a href="rsvp.html" class="active">RSVP</a>
+    </div>
+  </div>
+
+    
+
   
   <div class="container">
   <form id="rsvpForm">
@@ -248,12 +335,12 @@
       <input type="text" name="firstName" required>
       <label>Last Name</label>
       <input type="text" name="lastName" required>
-      <label>Will you attend?</label>
+      <label>Are you able to attend?</label>
       <div class="radio-group">
         <label class="radio-option"><input type="radio" name="attendance" value="Yes" required> Yes</label>
         <label class="radio-option"><input type="radio" name="attendance" value="No"> No</label>
       </div>
-      <button type="button" onclick="handleFirstPage()">Next</button>
+      <button type="button" id="nextButton" onclick="handleFirstPage()" disabled>Next</button>
     </div>
  
     <div id="page2" class="hidden">
@@ -280,7 +367,7 @@
       <select name="vegetables">
         <option value="" disabled selected>-- Select a vegetable option --</option>
         <option>Cabbage, carrots, and green beans</option>
-        <option>No vegetables</option></option>
+        <option>No vegetables</option>
       </select>
       
 
@@ -289,7 +376,7 @@
 
       <div id="guestFields"></div>
       <button type="button" class="back-button" onclick="goBackToPage1()">Back</button>
-      <button type="submit">Submit</button>
+      <button type="submit" disabled>Submit</button>
     </div>
     
   
@@ -325,172 +412,186 @@
     You can still be part of the ceremony via our livestream:<br><br>
   <a href="https://www.youtube.com/your-stream-link" target="_blank" class="calendar-button">Watch on YouTube</a><br><br>
   <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUR_STREAM_ID" frameborder="0" allowfullscreen></iframe>
-  <a href="index.html"
-   class="info-button"
-   style="
-     display: block;
-     margin: 30px auto 0;
-     background-color: transparent;
-     border: 2px solid #9caf88;
-     color: #9caf88;
-     padding: 12px 28px;
-     border-radius: 8px;
-     font-size: 18px;
-     font-weight: bold;
-     text-decoration: none;
-     transition: all 0.3s ease;
-     margin-top: 30px;
-     display: block;
-     
-   "
-   onmouseover="this.style.backgroundColor='#9caf88'; this.style.color='white';"
-   onmouseout="this.style.backgroundColor='transparent'; this.style.color='#9caf88';">
-  ← Back to Website
-</a>
+  
 </div></div>
-    <div id="loading" class="hidden message">Please wait...
-      <div class="loader"> </div>
-  </form>
+    <div id="loading" class="hidden message">
+  Please wait...
+  <div class="loader"></div>
 </div>
+</form>
+
 
 <div class="footer">
     <div class="rights">&copy; 2025 Junior and Gisselle. All rights reserved.</div>
   </div>
   <!-- Near the bottom of your HTML, inside the <script> tag -->
 <script>
-  function handleFirstPage() {
-    const attendance = document.querySelector('input[name="attendance"]:checked').value;
-    const firstName = document.querySelector('input[name="firstName"]').value;
-    const lastName = document.querySelector('input[name="lastName"]').value;
+    document.addEventListener("DOMContentLoaded", () => {
+      function handleFirstPage() {
+        const attendanceInput = document.querySelector('input[name="attendance"]:checked');
+        const firstNameInput = document.querySelector('input[name="firstName"]');
+        const lastNameInput = document.querySelector('input[name="lastName"]');
 
-    if (attendance === "Yes") {
-      document.getElementById("page1").classList.add("hidden");
-      document.getElementById("page2").classList.remove("hidden");
-    } else {
-      submitForm({ firstName, lastName, attendance }); // 🔧 Now this works!
-    }
-  }
+        const firstName = firstNameInput.value.trim();
+        const lastName = lastNameInput.value.trim();
 
-  // 🔧 ADDED FUNCTION — handles submission for "No" attendees
-  function submitForm(data) {
-    document.getElementById("page1").classList.add("hidden");
-    document.getElementById("loading").classList.remove("hidden");
+        if (!attendanceInput || !firstName || !lastName) return;
 
-    google.script.run
-      .withSuccessHandler(() => {
-        document.getElementById("loading").classList.add("hidden");
-        document.getElementById("sorry").classList.remove("hidden");
-      })
-      .withFailureHandler(() => {
-        document.getElementById("loading").classList.add("hidden");
-        alert("Something went wrong. Please try again later.");
-      })
-      .submitRSVP(data);
-  }
+        const attendance = attendanceInput.value;
 
-  function renderGuestFields(count) {
-    const container = document.getElementById("guestFields");
-    container.innerHTML = '';
-    for (let i = 1; i <= count; i++) {
-      container.innerHTML += 
-        <div class="guest-section">
-          <h4>Guest ${i}</h4>
-          <label>Name</label>
-          <input type="text" name="guestName${i}" required>
-          <label>Entree</label>
-          <select name="guestMeal${i}">
-            <option value="" disabled selected>-- Select an entree --</option>
-            <option>Oxtail</option>
-            <option>Curry Goat</option>
-            <option>Stew Chicken</option>
-            <option>Salmon (reserved for pescatarian guests)</option>
-            <option>No entree</option>
-          </select>
-          <label>Rice</label>
-          <select name="guestRice${i}">
-            <option value="" disabled selected>-- Select a rice option --</option>
-            <option>Rice and Peas</option>
-            <option>Plain White Rice</option>
-            <option>No Rice</option>
-          </select>
-          <label>Vegetables</label>
-          <select name="guestVegetable${i}">
-            <option value="" disabled selected>-- Select a vegetable option --</option>
-            <option>Cabbage, carrots, and green beans</option>
-            <option>No vegetables</option>
-          </select>
-        </div>;
-    }
-  }
-
-  document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    document.getElementById("loading").classList.remove("hidden");
-
-    const form = e.target;
-    const guestCount = parseInt(form.guestCount?.value || 0);
-    const data = {
-      firstName: form.firstName?.value || '',
-      lastName: form.lastName?.value || '',
-      attendance: form.attendance?.value || '',
-      phone: form.phone?.value || '',
-      meal: form.meal?.value || '',
-      side: form.rice?.value || '',
-      vegetables: form.vegetables?.value || '',
-      guests: guestCount,
-      guestMealPreferences: []
-    };
-
-    for (let i = 1; i <= guestCount; i++) {
-      data.guestMealPreferences.push({
-        guestName: form[guestName${i}]?.value || '',
-        guestMeal: form[guestMeal${i}]?.value || '',
-        guestRice: form[guestRice${i}]?.value || '',
-        guestVegetable: form[guestVegetable${i}]?.value || ''
-      });
-    }
-
-    google.script.run
-      .withSuccessHandler(() => {
-        document.getElementById("loading").classList.add("hidden");
-        document.getElementById("page2").classList.add("hidden");
-        document.getElementById("thankYou").classList.remove("hidden");
-      })
-      .withFailureHandler(() => {
-        document.getElementById("loading").classList.add("hidden");
-        alert("Something went wrong. Please try again later.");
-      })
-      .submitRSVP(data);
-  });
-  
-  // Auto-save form data to localStorage
-function saveFormToLocalStorage() {
-  const formData = new FormData(document.getElementById("rsvpForm"));
-  const data = {};
-  formData.forEach((value, key) => {
-    data[key] = value;
-  });
-  localStorage.setItem("rsvpFormData", JSON.stringify(data));
-}
-
-// Load saved form data
-function loadFormFromLocalStorage() {
-  const savedData = JSON.parse(localStorage.getItem("rsvpFormData"));
-  if (savedData) {
-    Object.keys(savedData).forEach(key => {
-      const input = document.querySelector([name="${key}"]);
-      if (input) input.value = savedData[key];
-      // Also handle radio buttons
-      if (input?.type === 'radio') {
-        document.querySelector([name="${key}"][value="${savedData[key]}"])?.setAttribute('checked', true);
+        if (attendance === "Yes") {
+          document.getElementById("page1").classList.add("hidden");
+          document.getElementById("page2").classList.remove("hidden");
+        } else {
+          submitForm({ firstName, lastName, attendance });
+        }
       }
-    });
-  }
-}
 
-// Save on every input change
-document.addEventListener("input", saveFormToLocalStorage);
-window.addEventListener("DOMContentLoaded", loadFormFromLocalStorage);
-</script>
+      function validatePage1Inputs() {
+        const firstName = document.querySelector('input[name="firstName"]').value.trim();
+        const lastName = document.querySelector('input[name="lastName"]').value.trim();
+        const attendance = document.querySelector('input[name="attendance"]:checked');
+        const nextButton = document.getElementById("nextButton");
+
+        nextButton.disabled = !(firstName && lastName && attendance);
+      }
+
+      function validatePage2Inputs() {
+        const form = document.getElementById("rsvpForm");
+        const submitButton = form.querySelector("button[type='submit']");
+
+        const phone = form.phone?.value.trim();
+        const meal = form.meal?.value;
+        const rice = form.rice?.value;
+        const vegetables = form.vegetables?.value;
+        const guestCountRaw = form.guestCount?.value;
+        let valid = phone && meal && rice && vegetables;
+
+        const guestCount = parseInt(guestCountRaw || 0);
+
+        for (let i = 1; i <= guestCount; i++) {
+          const gName = form[`guestName${i}`]?.value.trim();
+          const gMeal = form[`guestMeal${i}`]?.value;
+          const gRice = form[`guestRice${i}`]?.value;
+          const gVeg = form[`guestVegetable${i}`]?.value;
+          if (!(gName && gMeal && gRice && gVeg)) {
+            valid = false;
+            break;
+          }
+        }
+
+        submitButton.disabled = !valid;
+      }
+
+      function renderGuestFields(count) {
+        const container = document.getElementById("guestFields");
+        container.innerHTML = '';
+        count = parseInt(count) || 0;
+        for (let i = 1; i <= count; i++) {
+          container.innerHTML += `
+            <div class="guest-section">
+              <h4>Guest ${i}</h4>
+              <label>Name</label>
+              <input type="text" name="guestName${i}" required>
+              <label>Entree</label>
+              <select name="guestMeal${i}">
+                <option value="" disabled selected>-- Select an entree --</option>
+                <option>Oxtail</option>
+                <option>Curry Goat</option>
+                <option>Stew Chicken</option>
+                <option>Salmon (reserved for pescatarian guests)</option>
+                <option>No entree</option>
+              </select>
+              <label>Rice</label>
+              <select name="guestRice${i}">
+                <option value="" disabled selected>-- Select a rice option --</option>
+                <option>Rice and Peas</option>
+                <option>Plain White Rice</option>
+                <option>No Rice</option>
+              </select>
+              <label>Vegetables</label>
+              <select name="guestVegetable${i}">
+                <option value="" disabled selected>-- Select a vegetable option --</option>
+                <option>Cabbage, carrots, and green beans</option>
+                <option>No vegetables</option>
+              </select>
+            </div>
+          `;
+        }
+        validatePage2Inputs();
+      }
+
+      function goBackToPage1() {
+        document.getElementById("page2").classList.add("hidden");
+        document.getElementById("page1").classList.remove("hidden");
+      }
+
+      function submitForm(data) {
+        document.getElementById("page1")?.classList.add("hidden");
+        document.getElementById("page2")?.classList.add("hidden");
+        document.getElementById("thankYou")?.classList.add("hidden");
+        document.getElementById("sorry")?.classList.add("hidden");
+
+        if (data.attendance === "No") {
+          document.getElementById("sorry").classList.remove("hidden");
+        } else {
+          document.getElementById("thankYou").classList.remove("hidden");
+        }
+      }
+
+      document.querySelectorAll('input[name="firstName"], input[name="lastName"]').forEach(input => {
+        input.addEventListener("input", validatePage1Inputs);
+      });
+
+      document.querySelectorAll('input[name="attendance"]').forEach(input => {
+        input.addEventListener("change", validatePage1Inputs);
+      });
+
+      document.addEventListener("input", (e) => {
+        if (!document.getElementById("page2").classList.contains("hidden")) {
+          validatePage2Inputs();
+        }
+      });
+
+      document.getElementById("rsvpForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const form = e.target;
+        const guestCount = parseInt(form.guestCount?.value || 0);
+        const data = {
+          firstName: form.firstName?.value || '',
+          lastName: form.lastName?.value || '',
+          attendance: form.attendance?.value || '',
+          phone: form.phone?.value || '',
+          meal: form.meal?.value || '',
+          side: form.rice?.value || '',
+          vegetables: form.vegetables?.value || '',
+          guests: guestCount,
+          guestMealPreferences: []
+        };
+
+        for (let i = 1; i <= guestCount; i++) {
+          data.guestMealPreferences.push({
+            guestName: form[`guestName${i}`]?.value || '',
+            guestMeal: form[`guestMeal${i}`]?.value || '',
+            guestRice: form[`guestRice${i}`]?.value || '',
+            guestVegetable: form[`guestVegetable${i}`]?.value || ''
+          });
+        }
+
+        submitForm(data);
+      });
+
+      window.handleFirstPage = handleFirstPage;
+      window.renderGuestFields = renderGuestFields;
+      window.goBackToPage1 = goBackToPage1;
+
+      validatePage1Inputs();
+    });
+
+    function myFunction() {
+      const links = document.getElementById("myLinks");
+      links.classList.toggle("show");
+    }
+  </script>
 </body>
-</html>
+</html>
