@@ -35,12 +35,107 @@
       overflow-x: auto;
       white-space: nowrap;
     }
+    
+    .topnav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+    
     .logo {
       font-family: 'Cinzel', cursive;
       font-size: 20px;
       color: var(--cream);
       flex-shrink: 0;
     }
+    
+    .icon {
+      display: block;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    .icon div {
+      width: 25px;
+      height: 3px;
+      background-color: var(--cream);
+      margin: 5px 0;
+    }
+
+    #myLinks {
+      display: none;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.95);
+      position: absolute;
+      right: 20px;
+      top: 60px;
+      width: auto;
+      min-width: 150px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px var(--cream);
+    }
+
+    #myLinks.show {
+      display: block;
+    }
+    
+    #myLinks a {
+      color: var(--cream);
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      font-family: 'Cinzel', serif;
+      display: block;
+      transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+      text-align: right;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #myLinks a:hover {
+      background-color: transparent;
+      color: var(--cream);
+      text-shadow: 0 0 60px var(--cream);
+      transform: scale(1.05);
+    }
+    
+    #myLinks a.active {
+      color: var(--cream);
+      animation: pulseGlow 5s infinite;
+      font-weight: bold;
+    }
+
+
+    @media (min-width: 769px) {
+      .icon {
+        display: none;
+      }
+
+      #myLinks {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        background: none;
+        box-shadow: none;
+      }
+
+      #myLinks a {
+        padding: 0 15px;
+      }
+    }
+    @keyframes pulseGlow {
+ 
+  50% {
+    text-shadow: 0 0 8px var(--cream), 0 0 50px var(--cream);
+  }
+}
+
     nav {
       display: flex;
       flex-shrink: 1;
@@ -126,9 +221,9 @@
       background-color: #9caf88;
       color: #fff;
       box-shadow: 0 0 10px #9caf88, 0 0 20px #9caf88;
-      animation: pulseGlow 2s infinite ease-in-out;
+      animation: pulseGlowsage 2s infinite ease-in-out;
     }
-    @keyframes pulseGlow {
+    @keyframes pulseGlowsage {
       0% { transform: scale(1); box-shadow: 0 0 10px #9caf88; }
       50% { transform: scale(1.05); box-shadow: 0 0 20px #9caf88; }
       100% { transform: scale(1); box-shadow: 0 0 10px #9caf88; }
@@ -225,16 +320,21 @@
 <div id="header-container"></div>
 
 
-  <header>
-  <div class="logo">June 21, 2025</div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="schedule.html">Schedule</a>
-    <a href="lodging.html">Lodging</a>
-    <a href="registry.html">Registry</a>
-    <a href="rsvp.html">RSVP</a>
-  </nav>
-</header>
+  <div class="topnav">
+    <a href="index.html" class="logo">June 21, 2025</a>
+    <div class="icon" onclick="myFunction()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div id="myLinks">
+      <a href="index.html">Home</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="lodging.html">Lodging</a>
+      <a href="registry.html">Registry</a>
+      <a href="rsvp.html" class="active">RSVP</a>
+    </div>
+  </div>
 
   <div class="auth-container" id="authContainer">
     <h2>Please enter your passkey to access this page</h2>
@@ -334,12 +434,11 @@
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+  
+  function myFunction() {
+    const links = document.getElementById("myLinks");
+    links.classList.toggle("show");
+    }
 </script>
-
-
-<div id="footer-container"></div>
-
-
-
 </body>
 </html>
