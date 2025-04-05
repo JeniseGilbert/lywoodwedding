@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wedding Weekend Schedule</title>
+  <title>Weekend Schedule</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Alice&family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -35,12 +35,109 @@
       overflow-x: auto;
       white-space: nowrap;
     }
+    
+    .topnav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+    
     .logo {
       font-family: 'Cinzel', cursive;
       font-size: 20px;
       color: var(--cream);
       flex-shrink: 0;
     }
+    
+    .icon {
+      display: block;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    
+    .icon div {
+      width: 25px;
+      height: 3px;
+      background-color: var(--cream);
+      margin: 5px 0;
+    }
+    
+    #myLinks {
+      display: none;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.95);
+      position: absolute;
+      right: 20px;
+      top: 60px;
+      width: auto;
+      min-width: 150px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px var(--cream);
+    }
+
+    #myLinks.show {
+      display: block;
+    }
+    
+    #myLinks a {
+      color: var(--cream);
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      font-family: 'Cinzel', serif;
+      display: block;
+      transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+      text-align: right;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #myLinks a:hover {
+      background-color: transparent;
+      color: var(--cream);
+      text-shadow: 0 0 60px var(--cream);
+      transform: scale(1.05);
+    }
+    
+    #myLinks a.active {
+      color: var(--cream);
+      animation: pulseGlow 10s infinite;
+      font-weight: bold;
+    }
+
+
+    @media (min-width: 769px) {
+      .icon {
+        display: none;
+      }
+
+      #myLinks {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        background: none;
+        box-shadow: none;
+      }
+
+      #myLinks a {
+        padding: 0 15px;
+      }
+    }
+    
+    @keyframes pulseGlow {
+ 
+  50% {
+    text-shadow: 0 0 8px var(--cream), 0 0 50px var(--cream);
+  }
+}
+
+    
     nav {
       display: flex;
       flex-shrink: 1;
@@ -58,14 +155,17 @@
     }
 
     h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(48px, 12vw, 100px);
-      color: #fff;
-      margin: 10px auto;
-      padding: 0 10px;
-      text-align: center;
-      text-shadow: 0 0 2px #7a6e3f, 0 0 4px #7a6e3f;
-    }
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(48px, 12vw, 100px);
+  color: #fff;
+  margin: 10px auto;
+  padding: 0 10px;
+  text-align: center;
+  text-shadow: 0 0 2px #7a6e3f, 0 0 4px #7a6e3f;
+}
+
+   
+      
 
     .subtext {
       font-size: 18px;
@@ -169,67 +269,76 @@
 </head>
 <body>
 
-  <header>
-    <div class="logo">June 21, 2025</div>
-    <nav>
+<div class="topnav">
+    <a href="index.html" class="logo">June 21, 2025</a>
+    <div class="icon" onclick="myFunction()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div id="myLinks">
       <a href="index.html">Home</a>
-      <a href="schedule.html">Schedule</a>
+      <a href="schedule.html" class="active">Schedule</a>
       <a href="lodging.html">Lodging</a>
       <a href="registry.html">Registry</a>
       <a href="rsvp.html">RSVP</a>
-    </nav>
-  </header>
-
-  <div class="header">
-    <h1>Weekend Schedule</h1>
-    <p class="subtext">Here’s everything planned for our special weekend together.</p>
-  </div>
-
-  <div class="schedule-section">
-    <div class="event">
-      <div class="event-date">Friday, June 20</div>
-      <div class="event-title">Private Rehearsal Dinner</div>
-      <hr>
-      <div class="event-details">
-        6:00 PM<br>
-        <span class="location">Private Event</span>
-        Attire: Garden Chic
-      </div>
-    </div>
-
-    <div class="event">
-      <div class="event-date">Saturday, June 21</div>
-      <div class="event-title">Private Wedding Ceremony</div>
-      <hr>
-      <div class="event-details">
-        6:00 PM<br>
-        <span class="location">Private Event</span>
-        Attire: Formal
-      </div>
-    </div>
-
-    <div class="event">
-      <div class="event-date">Saturday, June 21</div>
-      <div class="event-title">Private Ceremony Dinner</div>
-      <hr>
-      <div class="event-details">
-        7:30 PM<br>
-        <span class="location">Private Event</span>
-        Attire: Formal
-      </div>
-    </div>
-
-    <div class="event">
-      <div class="event-date">Saturday, June 21</div>
-      <div class="event-title">Reception Party</div>
-      <hr>
-      <div class="event-details">
-        9:00 PM<br>
-        <span class="location">2009 Sheridan Dr. Baytown, TX</span>
-        Attire: Comfy & Casual
-      </div>
     </div>
   </div>
+
+  <!-- ... keep everything before this unchanged ... -->
+
+<div class="header">
+  <h1>Weekend Schedule</h1>
+  <p class="subtext">Here’s everything planned for our special weekend together.</p>
+</div>
+
+<div class="schedule-section">
+  <div class="event">
+    <div class="event-date">Friday, June 20</div>
+    <div class="event-title">Private Rehearsal Dinner</div>
+    <hr>
+    <div class="event-details">
+      6:00 PM<br>
+      <span class="location">Private Event</span>
+      Attire: Garden Chic
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">Saturday, June 21</div>
+    <div class="event-title">Private Wedding Ceremony</div>
+    <hr>
+    <div class="event-details">
+      6:00 PM<br>
+      <span class="location">Private Event</span>
+      Attire: Formal
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">Saturday, June 21</div>
+    <div class="event-title">Private Ceremony Dinner</div>
+    <hr>
+    <div class="event-details">
+      7:30 PM<br>
+      <span class="location">Private Event</span>
+      Attire: Formal
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="event-date">Saturday, June 21</div>
+    <div class="event-title">Reception Party</div>
+    <hr>
+    <div class="event-details">
+      9:00 PM<br>
+      <span class="location">2009 Sheridan Dr. Baytown, TX</span>
+      Attire: Comfy & Casual
+    </div>
+  </div>
+</div>
+
+<!-- ... keep everything after this unchanged ... -->
 
   <div class="footer">
     <div class="rights">&copy; 2025 Junior and Gisselle. All rights reserved.</div>
@@ -246,6 +355,11 @@
     });
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    function myFunction() {
+      const links = document.getElementById("myLinks");
+      links.classList.toggle("show");
     }
   </script>
 
