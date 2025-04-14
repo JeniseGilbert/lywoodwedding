@@ -287,6 +287,80 @@
       color: #ccc;
     }
     
+    .wear-gallery-wrapper {
+  overflow: hidden;
+  max-width: 100%;
+  padding: 10px 0;
+  border-radius: 8px;
+}
+
+.wear-gallery {
+  display: flex;
+  gap: 10px;
+  animation: scrollGallery 40s linear infinite;
+}
+
+.wear-gallery img {
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.wear-gallery img:hover {
+  transform: scale(1.05);
+}
+
+@keyframes scrollGallery {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Reduce based on how many images you duplicated */
+}
+
+.wear-gallery:hover {
+  animation-play-state: paused;
+}
+@media (max-width: 600px) {
+  .wear-gallery img {
+    height: 80px;
+  }
+}
+
+
+
+/* Modal Styles */
+.img-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
+}
+
+.img-modal .modal-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.img-modal .close {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+    
     .footer .rights {
       font-size: 14px;
       font-family: 'Cinzel', serif;
@@ -349,8 +423,8 @@
     <div class="event-title">Ceremony & Reception</div>
     <div class="event-time">6:00 pm - Until</div>
     <div class="event-location">2009 Sheridan, Baytown, TX 77521</div>
-    <div class="event-attire">Ceremony Attire: Formal </div>
-	  <div class="event-attire">Reception Attire: Dressy Casual </div>
+    <div class="event-attire">Attire: Garden Chic </div>
+	 
 
     <div class="event-row">
       <div class="event-card">
@@ -368,7 +442,7 @@
     </div>
 
     <div style="margin: 40px 0;">
-      <p style="font-family: 'Cinzel', serif; font-size: 16px; color: #ccc; margin-bottom: 10px;">Please RSVP no later than [date]</p>
+      <p style="font-family: 'Cinzel', serif; font-size: 16px; color: #ccc; margin-bottom: 10px;">Please RSVP no later than May 15, 2025.</p>
       <a href="#" onclick="handleRSVPClick(event)" class="info-button glow-button" style="display: inline-block; font-size: 20px; padding: 16px 44px;">
         RSVP NOW
       </a>
@@ -385,9 +459,47 @@
         <p>We kindly request that only children of the immediate family attend the ceremony. Thank you for your understanding!</p>
       </div>
       <div class="faq-item">
-        <h3>What should I wear?</h3>
-        <p>The ceremony is formal, so dress accordingly. For the reception, feel free to wear casual and comfortable attire to enjoy the celebration.</p>
-      </div>
+  <h3>What should I wear?</h3>
+  <p>
+    The ceremony is garden chic, so dress accordingly. For the reception, feel free to wear a dressy casual attire to enjoy the celebration.
+  </p>
+  <div class="wear-gallery-wrapper">
+  <div class="wear-gallery">
+    <img src="https://imgur.com/Zv73skp.jpg" alt="Outfit 1" class="modal-img" />
+    <img src="https://imgur.com/mzLw2uJ.jpg" alt="Outfit 2" class="modal-img" />
+    <img src="https://imgur.com/ozyXOKR.jpg" alt="Outfit 3" class="modal-img" />
+    <img src="https://imgur.com/p7dk3MA.jpg" alt="Outfit 4" class="modal-img" />
+    <img src="https://imgur.com/mtGTBI3.jpg" alt="Outfit 5" class="modal-img" />
+    <img src="https://imgur.com/ufoOpAD.jpg" alt="Outfit 6" class="modal-img" />
+    <img src="https://imgur.com/jinMus4.jpg" alt="Outfit 7" class="modal-img" />
+    <img src="https://imgur.com/DuzwCSe.jpg" alt="Outfit 8" class="modal-img" />
+    <img src="https://imgur.com/gqBuc4U.jpg" alt="Outfit 9" class="modal-img" />
+    <img src="https://imgur.com/zlfIEyi.jpg" alt="Outfit 10" class="modal-img" />
+    <img src="https://imgur.com/dQzuDo7.jpg" alt="Outfit 11" class="modal-img" />
+    <img src="https://imgur.com/0jHppp7.jpg" alt="Outfit 12" class="modal-img" />
+    <img src="https://imgur.com/rqgzpcT.jpg" alt="Outfit 13" class="modal-img" />
+  <img src="https://imgur.com/Zv73skp.jpg" alt="Outfit 1" class="modal-img" />
+    <img src="https://imgur.com/mzLw2uJ.jpg" alt="Outfit 2" class="modal-img" />
+    <img src="https://imgur.com/ozyXOKR.jpg" alt="Outfit 3" class="modal-img" />
+    <img src="https://imgur.com/p7dk3MA.jpg" alt="Outfit 4" class="modal-img" />
+    <img src="https://imgur.com/mtGTBI3.jpg" alt="Outfit 5" class="modal-img" />
+    <img src="https://imgur.com/ufoOpAD.jpg" alt="Outfit 6" class="modal-img" />
+    <img src="https://imgur.com/jinMus4.jpg" alt="Outfit 7" class="modal-img" />
+    <img src="https://imgur.com/DuzwCSe.jpg" alt="Outfit 8" class="modal-img" />
+    <img src="https://imgur.com/gqBuc4U.jpg" alt="Outfit 9" class="modal-img" />
+    <img src="https://imgur.com/zlfIEyi.jpg" alt="Outfit 10" class="modal-img" />
+    <img src="https://imgur.com/dQzuDo7.jpg" alt="Outfit 11" class="modal-img" />
+    <img src="https://imgur.com/0jHppp7.jpg" alt="Outfit 12" class="modal-img" />
+    <img src="https://imgur.com/rqgzpcT.jpg" alt="Outfit 13" class="modal-img" />
+  </div></div>
+</div>
+
+<!-- Modal -->
+<div id="imgModal" class="img-modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+
       <div class="faq-item">
         <h3>Where should I park?</h3>
         <p>Guests may park along the neighborhood streets near the event location at 2009 Sheridan. Please be courteous to residents and avoid blocking driveways.</p>
@@ -440,6 +552,29 @@
     const links = document.getElementById("myLinks");
     links.classList.toggle("show");
     }
+    
+    // Modal functionality
+const modal = document.getElementById("imgModal");
+const modalImg = document.getElementById("modalImage");
+const closeModal = document.querySelector(".img-modal .close");
+
+document.querySelectorAll(".modal-img").forEach(img => {
+  img.onclick = () => {
+    modal.style.display = "block";
+    modalImg.src = img.src;
+  };
+});
+
+closeModal.onclick = () => {
+  modal.style.display = "none";
+};
+
+window.onclick = (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+};
+
 </script>
 </body>
 </html>
