@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Lywood Wedding</title>
+  <title>Lodging</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Alice&family=Great+Vibes&family=Dancing+Script&display=swap" rel="stylesheet">
 <style>
   /* ========== Root Variables for Theme Colors ========== */
@@ -19,9 +19,10 @@
     padding: 0;
     background-color: var(--black); /* Dark background for elegant contrast */
     color: white;
-    font-family: 'Alice', serif;
+    font-family: 'Cinzel', serif;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    text-align: center;
   }
 
   /* ========== Header & Navigation Bar ========== */
@@ -95,24 +96,7 @@
   display: flex;
 }
 
-  /* Dropdown navigation links (mobile view) */
-  #myLinks {
-    display: none;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.95);
-    position: absolute;
-    right: 20px;
-    top: 60px;
-    width: auto;
-    min-width: 150px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px var(--cream);
-  }
-
-  #myLinks.show {
-    display: block; /* Show nav on icon click */
-  }
-
+ 
   #myLinks a {
     color: var(--cream);
     padding: 12px 20px;
@@ -158,7 +142,48 @@
       padding: 0 15px;
     }
   }
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: auto;
+}
 
+.dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  display: none;
+  position: absolute;
+  background-color: var(--black);
+  min-width: 160px;
+  box-shadow: 0 0 10px var(--cream);
+  border-radius: 6px;
+  z-index: 1001;
+  right: 0;
+  top: 100%;
+  margin-top: 10px;
+}
+
+.dropdown-content a {
+  color: var(--cream);
+  padding: 10px 20px;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  display: block;
+  white-space: nowrap;
+}
+
+.dropdown-content a:hover {
+  text-shadow: 0 0 60px var(--cream);
+  transform: scale(1.05);
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown.active .dropdown-content {
+  display: block !important;
+  opacity: 1;
+  visibility: visible;
+}
   /* Glowing animation for active nav link */
   @keyframes pulseGlow 
   /* ========================
@@ -250,6 +275,12 @@
   }
 }
 
+@keyframes pulseGlow {
+ 
+  50% {
+    text-shadow: 0 0 8px var(--cream), 0 0 50px var(--cream);
+  }
+}
   /* ========== Navigation Link Styling ========== */
   nav {
     display: flex;
@@ -268,131 +299,87 @@
   nav a:hover {
     color: var(--cream);
   }
-
-  /* ========== Hero Header Section ========== */
-  .header {
-    background-color: #000;
-    padding: 60px 20px 10px;
-    text-align: center;
-  }
-
-  .header .the {
-    font-family: 'Great Vibes', cursive;
-    font-size: 10vw;
-    color: white;
-  }
-
-  .header .lywood {
-    font-family: 'Cinzel', serif;
-    font-size: 12vw;
-    color: white;
-    margin: -10px 0 0;
-    text-shadow: 0 0 10px var(--cream), 0 0 20px var(--cream);
-    animation: streakGlow 2s ease-in-out infinite alternate, pulse 15s ease-in-out infinite;
-  }
-
-  /* Glowing text animation for header */
-  @keyframes streakGlow {
-    from { text-shadow: 0 0 6px var(--sage); }
-    to { text-shadow: 0 0 16px var(--sage); }
-  }
-
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-  }
-
-  .header .wedding {
-    font-family: 'Cinzel', serif;
-    font-size: 6vw;
-    color: white;
-    margin-top: -5px;
-    letter-spacing: 4px;
-  }
-
-  /* ========== Date & Countdown ========== */
-  .date-heading {
-    font-family: 'Cinzel', serif;
-    font-size: 18px;
-    margin-top: 20px;
-    margin-bottom: 8px;
-    text-align: center;
-  }
-
-  .countdown {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    margin: 10px auto 30px;
-    overflow-x: auto;
-    text-align: center;
-  }
-
-  .countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #F7F6F2;
-  }
-
-  .countdown-number {
-    font-family: 'Impact', cursive;
-    font-size: 6vw;
-    font-weight: lighter;
-    animation: glowGold 2s ease-in-out infinite alternate;
-  }
-
-  .countdown-label {
-    font-family: 'Cinzel', serif;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  /* Soft glowing effect for countdown numbers */
-  @keyframes glowGold {
-    from { color: #F7F6F2; text-shadow: 0 0 3px #D4AF37; }
-    to { color: #F7F6F2; text-shadow: 0 0 4px #D4AF37, 0 0 10px #D4AF37; }
-  }
-
-  /* ========== Scrolling Image Gallery ========== */
-  .gallery-wrapper {
-    overflow: hidden;
-    width: 100%;
-    background-color: #000;
-  }
-
-  .scroll-gallery {
-    display: flex;
-    width: max-content;
-    animation: scroll 40s linear infinite;
-  }
-
-  .scroll-gallery img {
-    height: 30vw;
-    width: auto;
-    display: block;
-    margin: 0;
-    padding: 0;
-  }
   
-  /* Glowing animation for active nav link */
-  @keyframes pulseGlow {
-    50% {
-      text-shadow: 0 0 8px var(--cream), 0 0 50px var(--cream);
+   h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(48px, 12vw, 100px);
+      color: #fff;
+      margin: 10px auto;
+      padding: 0 10px;
+      text-align: center;
+      text-shadow: 0 0 2px #7a6e3f, 0 0 4px #7a6e3f;
     }
-  }
-
-  /* Scroll animation for gallery */
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  /* ========== Footer Section ========== */
+    p.subtext {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 40px;
+      
+    }
+    .hotel-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hotel {
+      background-color: #111;
+      border: 1px solid var(--cream);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .hotel:hover {
+      transform: scale(1.03);
+      background-color: var(--cream);
+      color: black;
+    }
+    .hotel h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .hotel p {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+    .hotel a {
+      color: var(--sage);
+      text-decoration: underline;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    #backToTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 20px;
+      background-color: var(--cream);
+      color: black;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 16px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 250, 232, 0.4);
+      transition: opacity 0.3s ease;
+      opacity: 0;
+      z-index: 999;
+    }
+    #backToTopBtn.show {
+      opacity: 1;
+    }
+    .rights {
+      text-align: center;
+      font-size: 14px;
+      font-family: 'Cinzel', serif;
+      color: #bbb;
+      margin-top: 60px;
+    }
+  
+  
+  
+/* ========== Footer Section ========== */
   .footer {
     margin: 20px auto;
     max-width: 800px;
@@ -416,8 +403,8 @@
     color: #bbb;
     margin-top: 30px;
   }
-</style>
 
+</style>
 </head>
 <body>
 
@@ -429,9 +416,9 @@
       <div></div>
     </div>
     <div id="myLinks">
-      <a href="/home" class="active">Home</a>
+      <a href="/home" >Home</a>
       <a href="/reception">Reception</a>
-      <a href="/lodging">Lodging</a>
+      <a href="/lodging" class="active">Lodging</a>
       <a href="/registry">Registry</a>
       <a href="/rsvp">RSVP</a>
       <div class="dropdown" onclick="event.stopPropagation(); this.classList.toggle('active');">
@@ -443,64 +430,124 @@
       </div>
     </div>
   </div>
+  
+   <div class="header">
 
-  <div class="header">
-    <div class="the">The</div>
-    <div class="lywood">LYWOOD</div>
-    <div class="wedding">WEDDING</div>
-  </div>
-  <hr style="width: 200px; margin: 20px auto; border: 1px solid #9caf88;">
-  <div class="date-heading">June 21, 2025 at 6:00 PM</div>
-  <div class="countdown" id="countdown">
-    <div class="countdown-item"><div class="countdown-number" id="days">0</div><div class="countdown-label">Days</div></div>
-    <div class="countdown-item"><div class="countdown-number" id="hours">0</div><div class="countdown-label">Hours</div></div>
-    <div class="countdown-item"><div class="countdown-number" id="minutes">0</div><div class="countdown-label">Minutes</div></div>
-    <div class="countdown-item"><div class="countdown-number" id="seconds">0</div><div class="countdown-label">Seconds</div></div>
-  </div>
-  <div class="gallery-wrapper">
-    <div class="scroll-gallery">
-      <img src="https://i.imgur.com/H3BqxJa.jpg" />
-      <img src="https://i.imgur.com/fpXeAcH.jpg" />
-      <img src="https://i.imgur.com/Kp7VC9l.jpg" />
-      <img src="https://i.imgur.com/l42VjYr.jpg" />
-      <img src="https://i.imgur.com/K8yv48Z.jpg" />
-      <img src="https://i.imgur.com/kgeSQNK.jpg" />
-      <img src="https://i.imgur.com/gquhRkO.jpg" />
-    </div>
-  </div>
-  <div class="footer">
-    <p>
-      We are excited to celebrate this special moment with the people who mean the most to us. We invite you to join us for a day filled with love, laughter, and unforgettable memories as we say “I do.” We’d be honored to have your company at our wedding! Please explore our website for all the details, including the date, location, and RSVP information. We can’t wait to celebrate together!
-    </p>
-    <img src="https://i.imgur.com/zovqURF.png" alt="J & G Monogram" />
-    <div class="rights">&copy; 2025 Junior and Gisselle. All rights reserved.</div>
-  </div>
+<h1>Where to Stay</h1>
+<p class="subtext">We’ve selected a few comfortable and convenient hotel options in Baytown for our out-of-town guests.</p>
+<div class="hotel-list">
+<div class="hotel">
+<h2>Hyatt Regency Baytown</h2>
+<p>100 Convention Center Way, Baytown, TX 77520</p>
+<a href="https://www.hyatt.com/hyatt-regency/en-US/iahrb-hyatt-regency-baytown-houston" target="_blank">Visit Website</a>
+</div>
+<div class="hotel">
+<h2>SpringHill Suites by Marriott</h2>
+<p>5169 I-10 East, Baytown, TX 77521</p>
+<a href="https://www.marriott.com/en-us/hotels/houbt-springhill-suites-houston-baytown/overview" target="_blank">Visit Website</a>
+</div>
+<div class="hotel">
+<h2>Hilton Garden Inn Baytown</h2>
+<p>4910 E Chase St, Baytown, TX 77521</p>
+<a href="https://www.hilton.com/en/hotels/houbagi-hilton-garden-inn-houston-baytown" target="_blank">Visit Website</a>
+</div>
+</div>
+<h1 style="margin-top: 60px;">Things to Do</h1>
+<p class="subtext">Explore fun things to do while you're here in the Baytown and Houston area!</p>
+<div class="hotel-list">
+<div class="hotel">
+<h2>Houston Museum District</h2>
+<p>Explore 19 museums including art, science, and history — all in one cultural hub.</p>
+<a href="https://houmuse.org/" target="_blank">Learn More</a>
+</div>
+<div class="hotel">
+<h2>Kemah Boardwalk</h2>
+<p>A waterfront amusement area with rides, restaurants, shops, and games.</p>
+<a href="https://www.kemahboardwalk.com/" target="_blank">Plan Your Visit</a>
+</div>
+<div class="hotel">
+<h2>Baytown Nature Center</h2>
+<p>Beautiful trails, birdwatching, and scenic views in this peaceful outdoor park.</p>
+<a href="https://www.baytown.org/708/Nature-Center" target="_blank">Visit Site</a>
+</div>
+<div class="hotel">
+<h2>Houston Zoo</h2>
+<p>A favorite for families and animal lovers, located inside Hermann Park.</p>
+<a href="https://www.houstonzoo.org/" target="_blank">Explore the Zoo</a>
+</div>
+<div class="hotel">
+<h2>San Jacinto Monument &amp; Museum</h2>
+<p>Discover Texas history at the site of the Battle of San Jacinto.</p>
+<a href="https://www.sanjacinto-museum.org/" target="_blank">Learn More</a>
+</div>
+</div>
+<h1 style="margin-top: 60px;">Local Dining Restaurants</h1>
+<p class="subtext">Here are a few spots for drinks, dinner, and late-night vibes.</p>
+<div class="hotel-list">
+<div class="hotel">
+<h2>Cheddar's Scratch Kitchen </h2>
+<p>Comfort food made from scratch, perfect for a casual group dinner.</p>
+<a href="https://www.cheddars.com/locations/tx/baytown/baytown/2051/" target="_blank">Visit Website</a>
+</div>
+
+<div class="hotel">
+  <h2>Olive Garden</h3>
+  <p>Family-style Italian dining with endless breadsticks, pasta, and warm ambiance.</p>
+  <a href="https://www.olivegarden.com/locations/tx/baytown/baytown/1853" target="_blank" rel="noopener">View Location</a>
+</div>
+<div class="hotel">
+  <h2>Saltgrass Steak House</h3>
+  <p>A Texas-born steakhouse chain known for bold flavors, grilled steaks, and rustic charm.</p>
+  <a href="https://www.saltgrass.com/location/saltgrass-baytown/" target="_blank" rel="noopener">Visit Website</a>
+</div>
+<div class="hotel">
+  <h2>El Toro</h3>
+  <p>A local Tex-Mex favorite known for its vibrant flavors and welcoming atmosphere.</p>
+  <a href="https://www.eltorotexmex.com/garth" target="_blank" rel="noopener">Visit Website</a>
+</div>
+<div class="hotel">
+  <h2>LongHorn Steakhouse</h3>
+  <p>Classic American steakhouse serving expertly grilled steaks and hearty sides.</p>
+  <a href="https://www.longhornsteakhouse.com/locations/tx/baytown/baytown/5685" target="_blank" rel="noopener">View Location</a>
+</div>
+<div class="hotel">
+<h2>Pappadeaux's Seafood Kitchen</h2>
+<p>A vibrant seafood spot with bold flavors and an energetic dining atmosphere off I-10.</p>
+<a href="https://pappadeaux.com/locations/i-10-east/" target="_blank">View Location</a>
+</div>
+<div class="hotel">
+<h2>Post Houston</h2>
+<p>A massive food hall with rooftop views, cultural events, and a diverse mix of eateries.</p>
+<a href="https://www.posthtx.com/" target="_blank">Explore Post</a>
+</div>
+
+<div class="hotel">
+<h2>Chapman &amp; Kirby</h2>
+<p>A luxe industrial-chic space perfect for cocktails, music, and socializing in EaDo.</p>
+<a href="https://www.chapmanandkirby.com/" target="_blank">Check It Out</a>
+</div>
+</div>
+<div class="rights">© 2025 Junior and Gisselle. All rights reserved.</div>
+<button id="backToTopBtn" onclick="scrollToTop()">↑ Back to Top</button>
   <script>
-    const weddingTime = new Date("June 21, 2025 18:00:00").getTime();
-    const countdownInterval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = weddingTime - now;
-      if (distance < 0) {
-        clearInterval(countdownInterval);
-        document.getElementById("countdown").innerHTML = "<h2 style='color:white; font-family: Cinzel, serif;'>Now introducing Mr. and Mrs. Lywood... 💍✨</h2>";
-        return;
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
       }
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = hours;
-      document.getElementById("minutes").innerText = minutes;
-      document.getElementById("seconds").innerText = seconds;
-    }, 1000);
+    });
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     
     function myFunction() {
       const links = document.getElementById("myLinks");
       links.classList.toggle("show");
     }
-    
-  </script>
-</body>
+   </script>
+
+  
+  </body>
 </html>
