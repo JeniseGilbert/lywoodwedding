@@ -470,6 +470,72 @@
       const links = document.getElementById("myLinks");
       links.classList.toggle("show");
     }
+
+
+    
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyamZNscLPJae0J94OvYgF873a3kK9P6Y6fPVIpvIs6dgTT2tQmrqPVaDBFBY4Ie4Rr/exec"; // Replace with your deployed Web App URL
+  const IMGUR_CLIENT_ID = "a33bafc3b492d75";  // Replace with your Imgur Client ID
+
+  const form = document.getElementById("guestbookUploadForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const message = document.getElementById("message").value;
+    const photoFile = document.getElementById("photo").files[0];
+
+    let imageUrl = "";
+
+    if (photoFile) {
+      const imgurData = new FormData();
+      imgurData.append("image", photoFile);
+
+      try {
+        const imgurRes = await fetch("https://api.imgur.com/3/image", {
+          method: "POST",
+          headers: {
+            Authorization: `Client-ID ${IMGUR_CLIENT_ID}`,
+          },
+          body: imgurData,
+        });
+
+        const imgurJson = await imgurRes.json();
+        if (imgurJson.success) {
+          imageUrl = imgurJson.data.link;
+        } else {
+          alert("Photo upload failed. Submitting note without photo.");
+        }
+      } catch (err) {
+        console.error("Imgur upload error:", err);
+        alert("Could not upload image. Submitting without it.");
+      }
+    }
+
+    const submissionData = new FormData();
+    submissionData.append("name", name);
+    submissionData.append("message", message);
+    submissionData.append("imageUrl", imageUrl);
+
+    try {
+      const response = await fetch(scriptURL, {
+        method: "POST",
+        body: submissionData,
+      });
+
+      if (response.ok) {
+        alert("Thank you! Your entry was submitted.");
+        form.reset();
+      } else {
+        alert("Something went wrong. Try again.");
+      }
+    } catch (err) {
+      console.error("Submit error:", err);
+      alert("Submission failed.");
+    }
+  });
+
+
   </script>
 </body>
 </html>
