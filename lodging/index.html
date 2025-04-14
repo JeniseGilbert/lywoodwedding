@@ -133,6 +133,23 @@
   font-weight: bold;
   animation: pulseGlow 5s infinite;
 }
+ /* Desktop view - horizontal nav links */
+  @media (min-width: 769px) {
+    .icon {
+      display: none;
+    }
+    #myLinks {
+      display: flex !important;
+      flex-direction: row;
+      position: static;
+      width: auto;
+      background: none;
+      box-shadow: none;
+    }
+    #myLinks a {
+      padding: 0 15px;
+    }
+  }
 
 .dropdown {
   position: relative;
@@ -189,10 +206,14 @@
         width: auto;
         background: none;
         box-shadow: none;
+        padding: 0;
+        margin-left: auto;
+  }
       }
 
       #myLinks a {
         padding: 0 15px;
+        border-bottom: none;
       }
     }
     
