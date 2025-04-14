@@ -6,75 +6,76 @@
   <title>The Lywood Wedding</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Alice&family=Great+Vibes&family=Dancing+Script&display=swap" rel="stylesheet">
 <style>
-    :root {
-      --cream: #fffae8;
-      --sage: #9caf88;
-      --black: #000;
-    }
+  /* ========== Root Variables for Theme Colors ========== */
+  :root {
+    --cream: #fffae8; /* Soft cream color used for text and accents */
+    --sage: #9caf88;  /* Earthy sage green accent */
+    --black: #000;    /* Base background color */
+  }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--black);
-      color: white;
-      font-family: 'Alice', serif;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+  /* ========== Base Styles ========== */
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--black); /* Dark background for elegant contrast */
+    color: white;
+    font-family: 'Alice', serif;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
 
-    header {
-      position: sticky;
-      top: 0;
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
+  /* ========== Header & Navigation Bar ========== */
+  header {
+    position: sticky;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 
-    .topnav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.9);
-  padding: 15px 20px;
-  position: sticky;
-  top: 0;
-  z-index: 2000;
-  width: 100%;
-  border-bottom: 2px solid var(--cream);
-  box-sizing: border-box;
-  max-width: 1200px;
-  margin: 0 auto;
+  .topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+    width: 100%;
+    border-bottom: 2px solid var(--cream);
+    box-sizing: border-box;
+  }
+
+  .logo {
+    font-family: 'Cinzel', cursive;
+    font-size: 20px;
+    color: var(--cream); /* Highlighted logo text */
+    flex-shrink: 0;
+  }
+
+  /* Hamburger menu icon for mobile view */
+  .icon {
+  display: block;
+  cursor: pointer;
+  margin-left: auto;
+  z-index: 2001;
 }
-
-    .logo {
-  font-family: 'Cinzel', cursive;
-  font-size: 20px;
-  color: var(--cream);
-  flex-shrink: 0;
-  padding-right: 15px;
-}
-
-    .icon {
-      display: block;
-      cursor: pointer;
-      margin-left: auto;
-      z-index: 2001;
-    }
-
-    .icon div {
-      width: 25px;
-      height: 3px;
-      background-color: var(--cream);
-      margin: 5px 0;
-    }
-
-    #myLinks {
+  .icon div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--cream);
+    margin: 5px 0;
+  }
+  
+  /* Hidden mobile links menu */
+#myLinks {
   display: none;
   flex-direction: column;
   background-color: var(--black);
@@ -87,56 +88,297 @@
   z-index: 1002;
   width: fit-content;
   padding: 10px 0;
-  max-width: calc(100% - 40px);
 }
 
-    #myLinks.show {
-      display: flex;
-    }
+/* Show mobile links when toggled */
+#myLinks.show {
+  display: flex;
+}
 
+  /* Dropdown navigation links (mobile view) */
+  #myLinks {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.95);
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    width: auto;
+    min-width: 150px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--cream);
+  }
+
+  #myLinks.show {
+    display: block; /* Show nav on icon click */
+  }
+
+  #myLinks a {
+    color: var(--cream);
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Cinzel', serif;
+    display: block;
+    text-align: right;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+    
+  }
+
+  /* Hover effect for nav links */
+  #myLinks a:hover {
+    color: var(--cream);
+    text-shadow: 0 0 60px var(--cream);
+    transform: scale(1.05);
+  }
+
+  /* Active page link styling */
+  #myLinks a.active {
+    color: var(--cream);
+    font-weight: bold;
+    animation: pulseGlow 5s infinite;
+  }
+
+  /* Desktop view - horizontal nav links */
+  @media (min-width: 769px) {
+    .icon {
+      display: none;
+    }
+    #myLinks {
+      display: flex !important;
+      flex-direction: row;
+      position: static;
+      width: auto;
+      background: none;
+      box-shadow: none;
+    }
     #myLinks a {
-      color: var(--cream);
-      padding: 12px 20px;
-      text-decoration: none;
-      font-size: 18px;
-      font-family: 'Cinzel', serif;
-      display: block;
-      text-align: right;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
-      white-space: nowrap;
-      
+      padding: 0 15px;
     }
+  }
 
-    #myLinks a:hover {
-      color: var(--cream);
-      text-shadow: 0 0 60px var(--cream);
-      transform: scale(1.05);
-    }
+  /* Glowing animation for active nav link */
+  @keyframes pulseGlow 
+  /* ========================
+   DROPDOWN MENU (Guestbook)
+======================== */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: auto;
+}
 
-    #myLinks a.active {
-      color: var(--cream);
-      font-weight: bold;
-      animation: pulseGlow 5s infinite;
-    }
+.dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  display: none;
+  position: absolute;
+  background-color: var(--black);
+  min-width: 160px;
+  box-shadow: 0 0 10px var(--cream);
+  border-radius: 6px;
+  z-index: 1001;
+  right: 0;
+  left: auto;
+  top: 100%;
+  margin-top: 10px;
+}
 
-    @media (min-width: 769px) {
-      .icon {
-        display: none;
-      }
-      #myLinks {
-        display: flex !important;
-        flex-direction: row;
-        position: static;
-        width: auto;
-        background: none;
-        box-shadow: none;
-      }
-      #myLinks a {
-        padding: 0 15px;
-      }
-    }
+.dropdown-content a {
+  color: var(--cream);
+  padding: 10px 20px;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  display: block;
+  white-space: nowrap;
+}
 
+.dropdown-content a:hover {
+  text-shadow: 0 0 60px var(--cream);
+  transform: scale(1.05);
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown.active .dropdown-content {
+  display: block !important;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========================
+   RESPONSIVE NAV STYLES
+======================== */
+@media (min-width: 769px) {
+  .icon {
+    display: none;
+  }
+
+  #myLinks {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    position: static;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin-left: auto;
+  }
+
+  #myLinks a {
+    padding: 0 15px;
+    border-bottom: none;
+  }
+
+  .dropdown {
+    width: auto;
+  }
+
+  .dropdown-content {
+    right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #myLinks a {
+    font-size: 16px;
+  }
+  .logo {
+    font-size: 18px;
+  }
+}
+
+  /* ========== Navigation Link Styling ========== */
+  nav {
+    display: flex;
+    flex-shrink: 1;
+  }
+
+  nav a {
+    color: var(--sage);
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+    flex-shrink: 0;
+  }
+
+  nav a:hover {
+    color: var(--cream);
+  }
+
+  /* ========== Hero Header Section ========== */
+  .header {
+    background-color: #000;
+    padding: 60px 20px 10px;
+    text-align: center;
+  }
+
+  .header .the {
+    font-family: 'Great Vibes', cursive;
+    font-size: 10vw;
+    color: white;
+  }
+
+  .header .lywood {
+    font-family: 'Cinzel', serif;
+    font-size: 12vw;
+    color: white;
+    margin: -10px 0 0;
+    text-shadow: 0 0 10px var(--cream), 0 0 20px var(--cream);
+    animation: streakGlow 2s ease-in-out infinite alternate, pulse 15s ease-in-out infinite;
+  }
+
+  /* Glowing text animation for header */
+  @keyframes streakGlow {
+    from { text-shadow: 0 0 6px var(--sage); }
+    to { text-shadow: 0 0 16px var(--sage); }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  .header .wedding {
+    font-family: 'Cinzel', serif;
+    font-size: 6vw;
+    color: white;
+    margin-top: -5px;
+    letter-spacing: 4px;
+  }
+
+  /* ========== Date & Countdown ========== */
+  .date-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin: 10px auto 30px;
+    overflow-x: auto;
+    text-align: center;
+  }
+
+  .countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #F7F6F2;
+  }
+
+  .countdown-number {
+    font-family: 'Impact', cursive;
+    font-size: 6vw;
+    font-weight: lighter;
+    animation: glowGold 2s ease-in-out infinite alternate;
+  }
+
+  .countdown-label {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Soft glowing effect for countdown numbers */
+  @keyframes glowGold {
+    from { color: #F7F6F2; text-shadow: 0 0 3px #D4AF37; }
+    to { color: #F7F6F2; text-shadow: 0 0 4px #D4AF37, 0 0 10px #D4AF37; }
+  }
+
+  /* ========== Scrolling Image Gallery ========== */
+  .gallery-wrapper {
+    overflow: hidden;
+    width: 100%;
+    background-color: #000;
+  }
+
+  .scroll-gallery {
+    display: flex;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+  }
+
+  .scroll-gallery img {
+    height: 30vw;
+    width: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  
   /* Glowing animation for active nav link */
   @keyframes pulseGlow {
     50% {
@@ -144,157 +386,37 @@
     }
   }
 
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      width: auto;
-    }
+  /* Scroll animation for gallery */
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
-    .dropdown-content {
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-      display: none;
-      position: absolute;
-      background-color: var(--black);
-      min-width: 160px;
-      box-shadow: 0 0 10px var(--cream);
-      border-radius: 6px;
-      z-index: 1001;
-      right: 0;
-      top: 100%;
-      margin-top: 10px;
-    }
+  /* ========== Footer Section ========== */
+  .footer {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    font-size: 24px;
+    line-height: 1.7;
+    color: #F7F6F2;
+    font-family: 'Dancing Script', cursive;
+  }
 
-    .dropdown-content a {
-      color: var(--cream);
-      padding: 10px 20px;
-      text-decoration: none;
-      font-family: 'Cinzel', serif;
-      display: block;
-      white-space: nowrap;
-    }
+  .footer img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 5px;
+  }
 
-    .dropdown-content a:hover {
-      text-shadow: 0 0 60px var(--cream);
-      transform: scale(1.05);
-    }
-
-    .dropdown:hover .dropdown-content,
-    .dropdown.active .dropdown-content {
-      display: block !important;
-      opacity: 1;
-      visibility: visible;
-    }
-
-    @media (max-width: 768px) {
-      #myLinks a {
-        font-size: 16px;
-      }
-      .logo {
-        font-size: 18px;
-      }
-      .dropdown {
-        width: 100%;
-      }
-      .dropdown-content {
-        position: relative;
-        top: 0;
-        right: auto;
-        margin-top: 5px;
-        box-shadow: none;
-      }
-      .dropdown-content a {
-        padding: 10px 15px;
-        text-align: right;
-      }
-    }
-
-    .header {
-      background-color: #000;
-      padding: 60px 20px 10px;
-      text-align: center;
-    }
-
-    .header .the {
-      font-family: 'Great Vibes', cursive;
-      font-size: 10vw;
-      color: white;
-    }
-
-    .header .lywood {
-      font-family: 'Cinzel', serif;
-      font-size: 12vw;
-      color: white;
-      margin: -10px 0 0;
-      text-shadow: 0 0 10px var(--cream), 0 0 20px var(--cream);
-      animation: streakGlow 2s ease-in-out infinite alternate, pulse 15s ease-in-out infinite;
-    }
-
-    .header .wedding {
-      font-family: 'Cinzel', serif;
-      font-size: 6vw;
-      color: white;
-      margin-top: -5px;
-      letter-spacing: 4px;
-    }
-
-    .date-heading {
-      font-family: 'Cinzel', serif;
-      font-size: 18px;
-      margin-top: 20px;
-      margin-bottom: 8px;
-      text-align: center;
-    }
-
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: nowrap;
-      flex-direction: row;
-      margin: 10px auto 30px;
-      overflow-x: auto;
-      text-align: center;
-    }
-
-    .countdown-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #F7F6F2;
-    }
-
-    .countdown-number {
-      font-family: 'Impact', cursive;
-      font-size: 6vw;
-      font-weight: lighter;
-      animation: glowGold 2s ease-in-out infinite alternate;
-    }
-
-    .countdown-label {
-      font-family: 'Cinzel', serif;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    @keyframes glowGold {
-      from { color: #F7F6F2; text-shadow: 0 0 3px #D4AF37; }
-      to { color: #F7F6F2; text-shadow: 0 0 4px #D4AF37, 0 0 10px #D4AF37; }
-    }
-
-    @keyframes streakGlow {
-      from { text-shadow: 0 0 6px var(--sage); }
-      to { text-shadow: 0 0 16px var(--sage); }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-  </style>
+  .footer .rights {
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Cinzel', serif;
+    color: #bbb;
+    margin-top: 30px;
+  }
+</style>
 
 </head>
 <body>
@@ -308,7 +430,7 @@
     </div>
     <div id="myLinks">
       <a href="/home" class="active">Home</a>
-      <a href="/Reception">Reception</a>
+      <a href="/reception">Reception</a>
       <a href="/lodging">Lodging</a>
       <a href="/registry">Registry</a>
       <a href="/rsvp">RSVP</a>
