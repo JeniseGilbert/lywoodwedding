@@ -61,6 +61,7 @@
       display: block;
       cursor: pointer;
       margin-left: auto;
+      z-index: 2001;
     }
     .icon div {
       width: 25px;
@@ -88,6 +89,25 @@
 #myLinks.show {
   display: flex;
 }
+
+
+ /* Dropdown navigation links (mobile view) */
+  #myLinks {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.95);
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    width: auto;
+    min-width: 150px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--cream);
+  }
+
+  #myLinks.show {
+    display: block; /* Show nav on icon click */
+  }
 
 #myLinks a {
   color: var(--cream);
@@ -308,6 +328,25 @@
       color: #bbb;
       margin-top: 60px;
     }
+    
+    /* ========== Navigation Link Styling ========== */
+  nav {
+    display: flex;
+    flex-shrink: 1;
+  }
+
+  nav a {
+    color: var(--sage);
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+    flex-shrink: 0;
+  }
+
+  nav a:hover {
+    color: var(--cream);
+  }
     </style>
 </head>
 <body>
