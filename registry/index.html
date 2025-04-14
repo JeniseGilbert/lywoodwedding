@@ -36,16 +36,19 @@
     }
     
     .topnav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      flex-wrap: wrap;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  width: 100%;
+  border-bottom: 2px solid var(--cream);
+  box-sizing: border-box;
+}
+
     
     .logo {
       font-family: 'Cinzel', cursive;
@@ -68,46 +71,116 @@
     }
     
     #myLinks {
-      display: none;
-      flex-direction: column;
-      background-color: rgba(0, 0, 0, 0.95);
-      position: absolute;
-      right: 20px;
-      top: 60px;
-      width: auto;
-      min-width: 150px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px var(--cream);
-    }
+  display: none;
+  flex-direction: column;
+  background-color: var(--black);
+  position: absolute;
+  right: 20px;
+  top: 70px;
+  min-width: 180px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--cream);
+  z-index: 1002;
+  width: fit-content;
+  padding: 10px 0;
+}
 
-    #myLinks.show {
-      display: block;
-    }
-    
-    #myLinks a {
-      color: var(--cream);
-      padding: 12px 20px;
-      text-decoration: none;
-      font-size: 18px;
-      font-family: 'Cinzel', serif;
-      display: block;
-      transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
-      text-align: right;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+#myLinks.show {
+  display: flex;
+}
 
-    #myLinks a:hover {
-      background-color: transparent;
-      color: var(--cream);
-      text-shadow: 0 0 60px var(--cream);
-      transform: scale(1.05);
-    }
-    
-    #myLinks a.active {
-      color: var(--cream);
-      animation: pulseGlow 5s infinite;
-      font-weight: bold;
-    }
+#myLinks a {
+  color: var(--cream);
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: 'Cinzel', serif;
+  display: block;
+  text-align: right;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+#myLinks a:hover {
+  color: var(--cream);
+  text-shadow: 0 0 60px var(--cream);
+  transform: scale(1.05);
+}
+
+#myLinks a.active {
+  color: var(--cream);
+  font-weight: bold;
+  animation: pulseGlow 5s infinite;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: auto;
+}
+
+.dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  display: none;
+  position: absolute;
+  background-color: var(--black);
+  min-width: 160px;
+  box-shadow: 0 0 10px var(--cream);
+  border-radius: 6px;
+  z-index: 1001;
+  right: 0;
+  top: 100%;
+  margin-top: 10px;
+}
+
+.dropdown-content a {
+  color: var(--cream);
+  padding: 10px 20px;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  display: block;
+  white-space: nowrap;
+}
+
+.dropdown-content a:hover {
+  text-shadow: 0 0 60px var(--cream);
+  transform: scale(1.05);
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown.active .dropdown-content {
+  display: block !important;
+  opacity: 1;
+  visibility: visible;
+}
+@media (max-width: 768px) {
+  #myLinks a {
+    font-size: 16px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .dropdown-content {
+    position: relative;
+    top: 0;
+    right: auto;
+    margin-top: 5px;
+    box-shadow: none;
+  }
+
+  .dropdown-content a {
+    padding: 10px 15px;
+    text-align: right;
+  }
+}
 
 
     @media (min-width: 769px) {
@@ -241,6 +314,13 @@
       <a href="/lodging">Lodging</a>
       <a href="/registry" class="active">Registry</a>
       <a href="/rsvp">RSVP</a>
+      <div class="dropdown" onclick="event.stopPropagation(); this.classList.toggle('active');">
+      <a href="#">Guestbook ▾</a>
+      <div class="dropdown-content">
+          <a href="/guestbook/upload">Upload</a>
+          <a href="/guestbook/gallery">View Guestbook</a>
+        </div>
+      </div>
     </div>
   </div>
 
