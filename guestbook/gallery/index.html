@@ -329,19 +329,23 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 28px;
+  font-size: 24px;
   color: var(--black);
   background-color: var(--cream);
   border: none;
   border-radius: 50%;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 0 10px var(--cream);
   transition: transform 0.3s ease, background 0.3s ease;
   z-index: 3001;
+  padding: 0;
 }
+
 
 .spotlight-close:hover {
   background-color: white;
@@ -420,7 +424,9 @@
 
   function triggerSpotlight() {
     const entries = document.querySelectorAll('.entry');
-    if (entries.length === 0) return;
+
+    // Only start popups if there are at least 10 entries
+    if (entries.length < 10) return;
 
     if (spotlightQueue.length === 0) {
       spotlightQueue = shuffleEntries(entries);
@@ -445,10 +451,11 @@
       if (document.body.contains(overlay)) {
         overlay.remove();
       }
-    }, 5000);
+    }, 6000);
   }
 
-  setInterval(triggerSpotlight, 8000);
+  // Increase interval to 15 seconds (from 8)
+  setInterval(triggerSpotlight, 15000);
 
 
     const sheetAPI = "https://script.google.com/macros/s/AKfycbyamZNscLPJae0J94OvYgF873a3kK9P6Y6fPVIpvIs6dgTT2tQmrqPVaDBFBY4Ie4Rr/exec"; // Same as the one used in the Upload page
@@ -478,6 +485,29 @@
     .catch(err => {
       console.error("Failed to load guestbook entries:", err);
     });
+
+
+
+    setInterval(() => {
+  fetch(sheetAPI)
+    .then(res => res.json())
+    .then(entries => {
+      const gallery = document.getElementById("gallery");
+      gallery.innerHTML = "";
+      entries.reverse().forEach(entry => {
+        const div = document.createElement("div");
+        div.className = entry.imageUrl ? "entry" : "entry text-only";
+        if (entry.imageUrl) {
+          div.innerHTML = `<img src="${entry.imageUrl}" alt="Guest photo" />
+            <p>${entry.message} <br><strong>– ${entry.name}</strong></p>`;
+        } else {
+          div.innerHTML = `<p>${entry.message} <br><strong>– ${entry.name}</strong></p>`;
+        }
+        gallery.appendChild(div);
+      });
+    });
+}, 30000); // 30000 ms = 30 secs
+
 </script>
 
 
