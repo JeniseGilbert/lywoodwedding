@@ -22,6 +22,7 @@
     font-family: 'Alice', serif;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    text-align: center;
   }
 
   /* ========== Header & Navigation Bar ========== */
@@ -160,7 +161,13 @@
   }
 
   /* Glowing animation for active nav link */
-  @keyframes pulseGlow 
+  @keyframes pulseGlow {
+ 
+  50% {
+    text-shadow: 0 0 8px var(--cream), 0 0 50px var(--cream);
+  }
+}
+
   /* ========================
    DROPDOWN MENU (Guestbook)
 ======================== */
@@ -182,7 +189,6 @@
   border-radius: 6px;
   z-index: 1001;
   right: 0;
-  left: auto;
   top: 100%;
   margin-top: 10px;
 }
@@ -433,6 +439,7 @@
       <a href="/reception">Reception</a>
       <a href="/lodging">Lodging</a>
       <a href="/registry">Registry</a>
+      <a href="/attire">Attire</a>
       <a href="/rsvp">RSVP</a>
       <div class="dropdown" onclick="event.stopPropagation(); this.classList.toggle('active');">
       <a href="#">Guestbook ▾</a>
