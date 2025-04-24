@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RSVP Info</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Alice&family=Great+Vibes&family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
   /* ========== Root Variables for Theme Colors ========== */
   :root {
@@ -567,6 +570,44 @@
       font-weight: bold;
       font-size: 16px;
     }
+    
+    .rsvp-glow {
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
+  color: #ccc;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.rsvp-glow span {
+  color: #9caf88; /* Sage */
+  animation: glowPulse 3s ease-in-out infinite;
+  font-weight: bold;
+}
+
+@keyframes glowPulse {
+  0% {
+    text-shadow: 0 0 0px #9caf88;
+  }
+  50% {
+    text-shadow: 0 0 8px #9caf88, 0 0 16px #9caf88;
+  }
+  100% {
+    text-shadow: 0 0 0px #9caf88;
+  }
+}
+
+.auth-container {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+
       #backToTop {
       position: fixed;
       bottom: 30px;
@@ -618,7 +659,15 @@
   
   <div class="auth-container" id="authContainer">
     <h2>Please enter your passkey to access this page</h2>
-    <input type="password" id="passkeyInput" placeholder="Enter passkey" onkeydown="if(event.key==='Enter'){checkPasskey()}" />
+   <div style="position: relative; display: flex; align-items: center; width: 260px; margin: 0 auto;">
+  <input type="password" id="passkeyInput" placeholder="Enter passkey"
+         onkeydown="if(event.key==='Enter'){checkPasskey()}"
+         style="width: 100%; padding-right: 35px;" />
+  <i class="fa-solid fa-eye" id="togglePass" onclick="togglePassword()"
+     style="position: absolute; right: 10px; top: 60%; transform: translateY(-50%); cursor: pointer; color: black;"></i>
+</div>
+
+    
     <br>
     <button onclick="checkPasskey()">Submit</button>
     <div id="authError" class="auth-error"></div>
@@ -648,7 +697,8 @@
     </div>
 
     <div style="margin: 40px 0;">
-      <p style="font-family: 'Cinzel', serif; font-size: 16px; color: #ccc; margin-bottom: 10px;">Please RSVP no later than May 15, 2025.</p>
+     <p class="rsvp-glow">Please RSVP by <span>May 15, 2025</span>.</p>
+
       <a href="#" onclick="handleRSVPClick(event)" class="info-button glow-button" style="display: inline-block; font-size: 20px; padding: 16px 44px;">
         RSVP NOW
       </a>
@@ -718,7 +768,15 @@
     links.classList.toggle("show");
     }
     
-   
+   function togglePassword() {
+  const input = document.getElementById("passkeyInput");
+  const icon = document.getElementById("togglePass");
+  const isPassword = input.type === "password";
+  input.type = isPassword ? "text" : "password";
+  icon.classList.toggle("fa-eye");
+  icon.classList.toggle("fa-eye-slash");
+}
+
 
 </script>
 </body>
