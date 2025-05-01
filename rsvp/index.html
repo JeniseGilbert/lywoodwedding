@@ -730,17 +730,18 @@
 </div>
 <button id="backToTop" onclick="scrollToTop()">Back to Top</button>
 <script>
-  function checkPasskey() {
-    const passkey = document.getElementById("passkeyInput").value;
-    const allowedKey = "lywood2025";
-    const authError = document.getElementById("authError");
-    if (passkey === allowedKey) {
-      document.getElementById("authContainer").style.display = "none";
-      document.getElementById("rsvpContent").style.display = "block";
-    } else {
-      authError.textContent = "Incorrect passkey. Please try again.";
-    }
+ function checkPasskey() {
+  const passkey = document.getElementById("passkeyInput").value.toLowerCase();
+  const allowedKey = "lywood2025";
+  const authError = document.getElementById("authError");
+
+  if (passkey === allowedKey) {
+    document.getElementById("authContainer").style.display = "none";
+    document.getElementById("rsvpContent").style.display = "block";
+  } else {
+    authError.textContent = "Incorrect passkey. Please try again.";
   }
+}
 
   function handleRSVPClick(event) {
     event.preventDefault();
