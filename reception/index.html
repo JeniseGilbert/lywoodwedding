@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weekend Schedule</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Alice&family=Dancing+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Alice&family=Dancing+Script&family=Birthstone&display=swap" rel="stylesheet">
+
+
   <style>
     :root {
       --cream: #fffae8;
@@ -272,16 +274,20 @@
    
       
 
-    .subtext {
-      font-size: 18px;
-      font-family: 'Cinzel', serif;
-      color: #ccc;
-      margin-bottom: 40px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
+   .subtext {
+  font-size: 40px;
+  font-family: 'Birthstone', cursive;
+  color: #ccc;
+  margin-bottom: 40px;
+  max-width: 1000px;     /* Increase the max-width */
+  width: 90%;             /* Allow it to grow with screen size */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 1;       /* Adjust line spacing for better flow */
+  word-spacing: 2px;      /* Optional: space out words slightly */
+}
+
 
     .schedule-section {
       width: 100%;
@@ -290,11 +296,11 @@
       text-align: center;
     }
 
-    .event {
-      margin: 80px 0;
-      padding: 0 10px;
-      text-align: center;
-    }
+   .event {
+  margin: 40px 0; /* was 80px before */
+  padding: 0 10px;
+  text-align: center;
+}
 
     .event-title {
       font-family: 'Dancing Script', serif;
@@ -318,7 +324,7 @@
 
     .location {
       color: var(--sage);
-      font-size: 16px;
+      font-size: 20px;
       font-style: italic;
       display: block;
       margin-top: 5px;
@@ -402,14 +408,22 @@
 
 <div class="header">
   <h1>The Reception</h1>
-  <p class="subtext"> We feel incredibly fortunate to be surrounded by so many meaningful relationships. While we would love to share every moment of our special day with all of our loved ones, we’ve chosen to keep our ceremony small, shared with immediate family and a few close companions.  We’re truly excited to celebrate with you at the reception immediately following, and look forward to making unforgettable memories together. </p>
+   <div class="event-date">Saturday, June 21</div>
+    <div class="event-details">
+      8:00 PM<br>
+      <span class="location">2009 Sheridan Dr. Baytown, TX</span>
+      Attire: Garden Chic
+    </div>
+  <p class="subtext"> We feel incredibly fortunate to be surrounded by so many meaningful relationships. While we would love to share every moment of our special day with all of our loved ones, we’ve chosen to keep our ceremony small, shared with immediate family and a few close companions.  We’re truly excited to celebrate with you at the reception immediately following, and look forward to making unforgettable memories together. Although the ceremony will be intimate, you’re warmly invited to witness it live below.</p>
   
   
   <p class="subtext">The reception begins right after "I do".. The first dance, cake cutting, food, drinks, and dancing awaits!</p>
-  <p class="subtext">Junior & Gisselle</p>
+   <p class="subtext">The first dance, cake cutting, food, drinks, and dancing awaits!</p>
+  <p class="subtext" style="margin-bottom: 10px;">Junior & Gisselle</p>
 </div>
 
 
+  <!--
   <div class="event">
     <div class="event-date">Saturday, June 21</div>
     <div class="event-title">The Reception</div>
@@ -420,9 +434,10 @@
       Attire: Garden Chic
     </div>
   </div>
-</div>
+</div> -->
+
 <div class="event">
-  <div class="event-title">Watch the Wedding Ceremony Live</div>
+  <div class="event-title">Watch the Wedding Live</div>
   <hr>
   <p class="subtext">Tune in below to watch the wedding ceremony live.</p>
   <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin-top:20px;">
