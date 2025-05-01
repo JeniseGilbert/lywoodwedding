@@ -485,7 +485,7 @@
       <a href="/lodging">Lodging</a>
       <a href="/registry">Registry</a>
       <a href="/attire">Attire</a>
-      <a href="/rsvp">RSVP</a>
+      <!-- RSVP link will be injected dynamically by JavaScript if authorized -->
       <div class="dropdown" onclick="event.stopPropagation(); this.classList.toggle('active');">
         <a href="#" class="active">Guestbook ▾</a>
         <div class="dropdown-content">
@@ -607,6 +607,33 @@
       });
     });
 }, 30000); // 30000 ms = 30 secs
+
+
+function checkPasskey() {
+  const passkey = document.getElementById("passkeyInput").value.toLowerCase();
+  const allowedKey = "lywood2025";
+  const authError = document.getElementById("authError");
+
+  if (passkey === allowedKey) {
+    localStorage.setItem("passkeyValid", "true"); // Save auth state
+    document.getElementById("authContainer").style.display = "none";
+    document.getElementById("rsvpContent").style.display = "block";
+  } else {
+    authError.textContent = "Incorrect passkey. Please try again.";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const isAuthorized = localStorage.getItem("passkeyValid") === "true";
+
+    if (isAuthorized) {
+      const nav = document.querySelector("nav");
+      const rsvpLink = document.createElement("a");
+      rsvpLink.href = "rsvp.html"; // Update with your actual URL
+      rsvpLink.textContent = "RSVP";
+      nav.appendChild(rsvpLink);
+    }
+  });
 
 </script>
 
