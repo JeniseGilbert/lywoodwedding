@@ -4,7 +4,7 @@ CALSCALE:GREGORIAN
 BEGIN:VEVENT
 SUMMARY:Junior and Gisselle's Wedding
 DESCRIPTION:Join us for our special day!
-LOCATION:2009 Sheridan Dr. Baytown TX 77520
+LOCATION:5715 Hemingway Lane, Manvel, Texas 77578
 DTSTART;TZID=America/Chicago:20250621T180000
 DTEND;TZID=America/Chicago:20250622T000000
 END:VEVENT
