@@ -438,6 +438,25 @@ input[type="file"] {
       transition: background-color 0.3s;
       margin-left: -13px; /* Adjust as needed */
     }
+    
+    .view-gallery-button {
+  margin-top: 20px;
+      background-color: #9caf88;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+      margin-left: -13px; /* Adjust as needed */
+}
+
+.view-gallery-button:hover {
+  background-color: var(--sage);
+  color: #fff;
+}
+
 
     button:hover {
       background-color: #ccc;
@@ -522,7 +541,12 @@ input[type="file"] {
       <label for="photo">Share a photo from the Wedding! (optional)</label>
       <input type="file" id="photo" name="photo" accept="image/*">
 
-      <button type="submit">Submit</button>
+      
+      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+  <button type="submit">Submit</button>
+  <button type="button" class="view-gallery-button" onclick="window.open('https://thelywoods.com/guestbook/gallery', '_blank')">View Guestbook Gallery</button>
+
+</div>
 
       <div class="note">Note: Your message and photo will appear on our live guestbook wall after approval.</div>
     </form>
@@ -602,9 +626,10 @@ input[type="file"] {
       });
 
       if (response.ok) {
-        alert("Thank you! Your entry was submitted.");
-        form.reset();
-      } else {
+  alert("Thank you! Your entry was submitted.");
+  form.reset();
+}
+ else {
         alert("Something went wrong. Try again.");
       }
     } catch (err) {
